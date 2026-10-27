@@ -27,14 +27,15 @@ export function ColorSchemeToggle() {
     setScheme(next)
   }
 
-  const Icon = scheme === 'dark' ? Sun : Moon
   const label = scheme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'
 
   // A toggle button carries its state in `aria-pressed`, so its name is static and names
   // the thing toggled ('Dark mode'); `title` is the sighted tooltip for what a click does.
   return (
     <Toggle pressed={scheme === 'dark'} onPressedChange={flip} aria-label='Dark mode' title={label}>
-      <Icon className='h-4 w-4' />
+      {/* Swapped by CSS, not state, so the icon is right before hydration too. */}
+      <Sun className='hidden h-4 w-4 dark:block' />
+      <Moon className='h-4 w-4 dark:hidden' />
     </Toggle>
   )
 }

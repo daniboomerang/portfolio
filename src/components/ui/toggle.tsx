@@ -65,7 +65,12 @@ function Toggle({
   // highlight and content are presentational.
   return (
     <TogglePrimitive.Root pressed={isPressed} onPressedChange={handlePressedChange} disabled={disabled} asChild>
-      <motion.button data-slot='toggle' className='relative' whileTap={{ scale: 0.95 }} {...props}>
+      <motion.button
+        data-slot='toggle'
+        className='relative rounded-md outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px]'
+        whileTap={{ scale: 0.95 }}
+        {...props}
+      >
         <AnimatePresence>
           {isPressed && (
             <motion.div

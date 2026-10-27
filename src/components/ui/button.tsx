@@ -66,10 +66,16 @@ function Button({
   )
   const motionProps = { whileTap: { scale: tapScale }, whileHover: { scale: hoverScale } }
 
-  if (asChild && React.isValidElement(children)) {
+  const child = asChild
+    ? React.isValidElement(children)
+      ? children
+      : React.Children.toArray(children as React.ReactNode).find(React.isValidElement)
+    : undefined
+
+  if (child) {
     return (
       <Slot className={classes} {...motionProps} {...(props as HTMLMotionProps<'button'>)}>
-        {children}
+        {child}
       </Slot>
     )
   }
