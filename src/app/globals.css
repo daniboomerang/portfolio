@@ -1,0 +1,201 @@
+@import "tailwindcss";
+
+/* Tailwind's dark: variant follows the [data-theme] attribute on <html> (set by the
+   pre-paint script in the root layout and by the color-scheme toggle), never the OS
+   prefers-color-scheme media query. */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* Theme tokens. These are the exact values the portfolio's `portfolioConfig` theme produced
+   in the AttaLabs Sanity project (l5n0n8nn) at port time — IBM Plex type, square corners,
+   offset shadows. Light is the base; dark overrides it under [data-theme="dark"]. Change the
+   look here, through these semantic variables — never with palette classes in components. */
+:root {
+  --accent: oklch(0.905 0.02 80);
+  --accent-foreground: oklch(0.16 0.012 70);
+  --background: oklch(0.975 0.008 85);
+  --border: oklch(0.30 0.012 70);
+  --card: oklch(0.99 0.004 85);
+  --card-foreground: oklch(0.16 0.012 70);
+  --chart-1: oklch(0.52 0.12 155);
+  --chart-2: oklch(0.52 0.13 250);
+  --chart-3: oklch(0.62 0.14 60);
+  --chart-4: oklch(0.50 0.17 300);
+  --chart-5: oklch(0.55 0.17 28);
+  --destructive: oklch(0.52 0.19 28);
+  --destructive-foreground: oklch(0.99 0.004 85);
+  --foreground: oklch(0.16 0.012 70);
+  --gradient-background: linear-gradient(to bottom, oklch(0.975 0.008 85), oklch(0.955 0.01 84));
+  --gradient-card: linear-gradient(to bottom right, oklch(0.99 0.004 85), oklch(0.975 0.008 85));
+  --gradient-primary: linear-gradient(to right, oklch(0.16 0.012 70), oklch(0.26 0.012 70));
+  --header-background: linear-gradient(to bottom, oklch(0.975 0.008 85), oklch(0.955 0.01 84));
+  --input: oklch(0.82 0.014 78);
+  --muted: oklch(0.945 0.012 82);
+  --muted-foreground: oklch(0.47 0.015 70);
+  --popover: oklch(0.99 0.004 85);
+  --popover-foreground: oklch(0.16 0.012 70);
+  --primary: oklch(0.16 0.012 70);
+  --primary-foreground: oklch(0.975 0.008 85);
+  --primary-hover: oklch(0.1 0.012 70);
+  --ring: oklch(0.52 0.12 155);
+  --secondary: oklch(0.93 0.014 82);
+  --secondary-foreground: oklch(0.16 0.012 70);
+  --secondary-hover: oklch(0.89 0.014 82);
+  --shadow-color: oklch(0.16 0.012 70);
+  --sidebar: oklch(0.955 0.01 84);
+  --sidebar-accent: oklch(0.905 0.02 80);
+  --sidebar-accent-foreground: oklch(0.16 0.012 70);
+  --sidebar-border: oklch(0.30 0.012 70);
+  --sidebar-foreground: oklch(0.16 0.012 70);
+  --sidebar-primary: oklch(0.16 0.012 70);
+  --sidebar-primary-foreground: oklch(0.975 0.008 85);
+  --sidebar-ring: oklch(0.52 0.12 155);
+  --success: oklch(0.52 0.12 155);
+  --success-foreground: oklch(0.99 0.004 85);
+  --warning: oklch(0.80 0.15 80);
+  --warning-foreground: oklch(0.16 0.012 70);
+  --font-sans: IBM Plex Sans, sans-serif;
+  --font-serif: IBM Plex Serif, serif;
+  --font-mono: IBM Plex Mono, monospace;
+  --tracking-normal: 0em;
+  --radius: 0rem;
+  --spacing: 0.25rem;
+  --shadow-2xs: 1px 1px 0 0 var(--shadow-color);
+  --shadow-xs: 1px 1px 0 0 var(--shadow-color);
+  --shadow-sm: 2px 2px 0 0 var(--shadow-color);
+  --shadow: 3px 3px 0 0 var(--shadow-color);
+  --shadow-md: 4px 4px 0 0 var(--shadow-color);
+  --shadow-lg: 6px 6px 0 0 var(--shadow-color);
+  --shadow-xl: 8px 8px 0 0 var(--shadow-color);
+  --shadow-2xl: 12px 12px 0 0 var(--shadow-color);
+}
+
+[data-theme="dark"] {
+  --accent: oklch(0.27 0.01 70);
+  --accent-foreground: oklch(0.94 0.008 85);
+  --background: oklch(0.14 0.008 70);
+  --border: oklch(0.42 0.01 75);
+  --card: oklch(0.18 0.008 70);
+  --card-foreground: oklch(0.94 0.008 85);
+  --chart-1: oklch(0.72 0.15 155);
+  --chart-2: oklch(0.70 0.13 250);
+  --chart-3: oklch(0.78 0.14 70);
+  --chart-4: oklch(0.70 0.16 300);
+  --chart-5: oklch(0.68 0.18 28);
+  --destructive: oklch(0.65 0.20 27);
+  --destructive-foreground: oklch(0.14 0.008 70);
+  --foreground: oklch(0.94 0.008 85);
+  --gradient-background: linear-gradient(to bottom, oklch(0.14 0.008 70), oklch(0.17 0.008 70));
+  --gradient-card: linear-gradient(to bottom right, oklch(0.18 0.008 70), oklch(0.14 0.008 70));
+  --gradient-primary: linear-gradient(to right, oklch(0.94 0.008 85), oklch(0.86 0.012 82));
+  --header-background: linear-gradient(to bottom, oklch(0.14 0.008 70), oklch(0.17 0.008 70));
+  --input: oklch(0.32 0.01 70);
+  --muted: oklch(0.23 0.008 70);
+  --muted-foreground: oklch(0.70 0.012 80);
+  --popover: oklch(0.18 0.008 70);
+  --popover-foreground: oklch(0.94 0.008 85);
+  --primary: oklch(0.94 0.008 85);
+  --primary-foreground: oklch(0.14 0.008 70);
+  --primary-hover: oklch(1 0.008 85);
+  --ring: oklch(0.72 0.15 155);
+  --secondary: oklch(0.23 0.008 70);
+  --secondary-foreground: oklch(0.94 0.008 85);
+  --secondary-hover: oklch(0.27 0.008 70);
+  --shadow-color: oklch(0 0 0);
+  --sidebar: oklch(0.17 0.008 70);
+  --sidebar-accent: oklch(0.27 0.01 70);
+  --sidebar-accent-foreground: oklch(0.94 0.008 85);
+  --sidebar-border: oklch(0.42 0.01 75);
+  --sidebar-foreground: oklch(0.94 0.008 85);
+  --sidebar-primary: oklch(0.94 0.008 85);
+  --sidebar-primary-foreground: oklch(0.14 0.008 70);
+  --sidebar-ring: oklch(0.72 0.15 155);
+  --success: oklch(0.72 0.15 155);
+  --success-foreground: oklch(0.14 0.008 70);
+  --warning: oklch(0.82 0.15 82);
+  --warning-foreground: oklch(0.14 0.008 70);
+  --font-sans: IBM Plex Sans, sans-serif;
+  --font-serif: IBM Plex Serif, serif;
+  --font-mono: IBM Plex Mono, monospace;
+  --tracking-normal: 0em;
+  --radius: 0rem;
+  --spacing: 0.25rem;
+  --shadow-2xs: 1px 1px 0 0 var(--shadow-color);
+  --shadow-xs: 1px 1px 0 0 var(--shadow-color);
+  --shadow-sm: 2px 2px 0 0 var(--shadow-color);
+  --shadow: 3px 3px 0 0 var(--shadow-color);
+  --shadow-md: 4px 4px 0 0 var(--shadow-color);
+  --shadow-lg: 6px 6px 0 0 var(--shadow-color);
+  --shadow-xl: 8px 8px 0 0 var(--shadow-color);
+  --shadow-2xl: 12px 12px 0 0 var(--shadow-color);
+}
+
+@theme inline {
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-hover: var(--primary-hover);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary-hover: var(--secondary-hover);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-border: var(--border);
+  --color-shadow-color: var(--shadow-color);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+  --font-serif: var(--font-serif);
+
+  --radius: var(--radius);
+  --radius-sm: calc(var(--radius) - 3px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    background: var(--background);
+    font-size: 18px;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+  }
+}
+
+@layer utilities {
+  .shadow-2xs { box-shadow: var(--shadow-2xs); }
+  .shadow-xs { box-shadow: var(--shadow-xs); }
+  .shadow-sm { box-shadow: var(--shadow-sm); }
+  .shadow { box-shadow: var(--shadow); }
+  .shadow-md { box-shadow: var(--shadow-md); }
+  .shadow-lg { box-shadow: var(--shadow-lg); }
+  .shadow-xl { box-shadow: var(--shadow-xl); }
+  .shadow-2xl { box-shadow: var(--shadow-2xl); }
+}
