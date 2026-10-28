@@ -54,7 +54,7 @@ export function LauncherSchematic() {
           ))}
         </ul>
         <div className='flex flex-col gap-3 p-3 sm:p-4'>
-          <div className='relative flex aspect-video flex-col justify-end gap-3 overflow-hidden border border-rule bg-muted p-4'>
+          <div className='relative flex min-h-40 flex-col justify-end gap-3 overflow-hidden border border-rule bg-muted p-4 pt-14 sm:aspect-video sm:min-h-0'>
             <Gamepad2 className='absolute top-4 right-4 size-6 text-muted-foreground' />
             <span className='font-mono text-label uppercase text-muted-foreground'>Featured game</span>
             <span className='flex flex-wrap gap-2'>

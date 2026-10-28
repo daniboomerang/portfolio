@@ -15,7 +15,7 @@ Next.js 16 App Router (the page prerenders as static), Tailwind v4, TypeScript s
 - **Icons: `lucide-react` only.**
 - **Animation uses `motion/react`.** Reduced motion is handled once by `MotionProvider` (`<MotionConfig reducedMotion='user'>`) in the root layout — don't add per-component checks. Durations and easing come from `src/lib/motion.ts`, which mirrors the CSS motion tokens. Text must render visible from the server (no SSR `opacity: 0` on hero copy).
 - **Color scheme**: `data-theme` on `<html>`, persisted in the `atta-color-scheme` cookie, light by default (the redesign's paper look). The inline script in `src/app/layout.tsx` corrects it before first paint; `ColorSchemeToggle` flips it. Keep `src/lib/color-scheme.ts` as the single contract.
-- Adding a product to the grid: append to `products` in `src/content/portfolio.ts`.
+- Adding a work exhibit to chapter 05: append to `work.items` in `src/content/portfolio.ts` (pick a `WorkSchematic` preview until a real screenshot exists).
 - Code style is whatever `bun run lint` (Biome) says: single quotes, no semicolons, 2-space indent, 120 columns.
 
 ## Gates
