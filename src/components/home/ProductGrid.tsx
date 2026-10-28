@@ -20,7 +20,7 @@ export function ProductGrid() {
 
       <ul className='mt-14 grid gap-6 sm:grid-cols-2'>
         {products.map((product, index) => (
-          <li key={product.href}>
+          <li key={product.href} className='min-w-0'>
             <Reveal delay={index * 0.1} className='h-full'>
               <motion.a
                 href={product.href}
@@ -39,7 +39,7 @@ export function ProductGrid() {
                       <ArrowUpRight className='h-5 w-5 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-primary' />
                     </div>
                     <Text className='text-muted-foreground'>{product.summary}</Text>
-                    <Text as='span' size='xs' muted className='mt-auto pt-2 font-mono'>
+                    <Text as='span' size='xs' muted className='mt-auto pt-2 font-mono wrap-anywhere'>
                       {product.host}
                     </Text>
                   </CardContent>

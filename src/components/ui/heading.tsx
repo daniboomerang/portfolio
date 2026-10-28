@@ -18,7 +18,11 @@ const sizeClasses = {
   xl: 'text-xl',
   '2xl': 'text-2xl',
   '3xl': 'text-3xl',
-  '4xl': 'text-4xl'
+  '4xl': 'text-4xl',
+  // Editorial roles (tokens in globals.css). Pair with `font-display`.
+  display: 'text-display',
+  chapter: 'text-chapter',
+  title: 'text-title'
 }
 
 const weightClasses = {
@@ -27,6 +31,9 @@ const weightClasses = {
   semibold: 'font-semibold',
   bold: 'font-bold'
 }
+
+// The editorial sizes carry their own letter-spacing token; tracking-tight would override it.
+const editorialSizes = new Set<string | undefined>(['display', 'chapter', 'title'])
 
 type HeadingProps = React.HTMLAttributes<HTMLHeadingElement> & {
   level?: keyof typeof defaultSizeByLevel
@@ -40,7 +47,11 @@ const Heading = React.forwardRef<HTMLHeadingElement, HeadingProps>(
     const sizeClass = size ? sizeClasses[size] : defaultSizeByLevel[level]
 
     return (
-      <Tag ref={ref} className={cn(sizeClass, weightClasses[weight], 'tracking-tight', className)} {...props}>
+      <Tag
+        ref={ref}
+        className={cn(sizeClass, weightClasses[weight], !editorialSizes.has(size) && 'tracking-tight', className)}
+        {...props}
+      >
         {children}
       </Tag>
     )

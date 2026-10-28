@@ -5,7 +5,7 @@ description: Launch the portfolio from a clean state, drive it in a real browser
 
 # verify-app — the portfolio
 
-One static route (`/`) served by Next.js on **port 3009**. No backend, no env vars, no auth — if the page renders and the
+Two static routes (`/` and `/system`) served by Next.js on **port 3009**. No backend, no env vars, no auth — if the page renders and the
 sections animate in, the app is up.
 
 ## 1. Launch from a clean state
@@ -25,7 +25,7 @@ For a production-like check use `bun run build && bun run start > .fredrin/tmp/s
 ```bash
 for i in $(seq 1 60); do
   html=$(curl -fsS http://localhost:3009/ 2>/dev/null) &&
-  echo "$html" | grep -q 'Fifteen years of engineering judgment' &&
+  echo "$html" | grep -q 'And the systems' &&
   css=$(echo "$html" | grep -o '/_next/static/[^"]*\.css' | head -1) &&
   [ -n "$css" ] && curl -fsS "http://localhost:3009$css" | grep -q -- '--background' &&
   { echo READY; break; }
@@ -48,17 +48,26 @@ done
 
 Use Fredrin's browser (`fredrin browser …`; with a ticket bound it is the Live pane). Viewport ~1280×870.
 
-1. `navigate http://localhost:3009/` — hero: eyebrow "AI SYSTEMS ENGINEER · THAILAND · REMOTE", name reveals word by
-   word, thesis line, LinkedIn / GitHub / CV + Audit buttons, bouncing arrow. Header: name left, Story / Career /
-   Products + sun toggle right.
+1. `navigate http://localhost:3009/` — light paper by default. Header: DANI ESTEVEZ / SOFTWARE ENGINEER left, Story /
+   Work / Contact + scheme toggle right (links visible at every width). Hero: "I build software. / And the systems /
+   behind it." (three lines on desktop), the "18 years building software…" summary, Explore the story ↓, THAILAND ·
+   GMT+7, and the line-drawn planes diagram on the right (under the text below `lg`), floating once by a few px.
 2. Click nav **Story** (or `navigate http://localhost:3009/#story`) — three paragraphs fade in; counters run to 15+ / 4+ / 3.
 3. **Career** (`#career`) — timeline thread fills as you scroll; each entry's dot springs in; education last.
 4. **Products** (`#products`) — four cards (Vāda, Herald, Vinaya, Atta Labs) that lift on hover and link out.
 5. Scroll to the bottom — footer "Let's build something that holds." with the three links.
-6. **Color scheme**: click the toggle → `<html data-theme>` flips dark → light, `document.cookie` has
-   `atta-color-scheme=light`; `reload` → still light (no dark flash). Click again to restore dark.
+6. **Color scheme**: click the toggle → `<html data-theme>` flips light → dark, `document.cookie` has
+   `atta-color-scheme=dark`; `reload` → still dark (no light flash). Click again to restore light.
    Check with `eval "document.documentElement.dataset.theme + ' | ' + document.cookie"`.
-7. `console` — expect no errors (hydration warnings included).
+7. `navigate http://localhost:3009/system` — colour tokens, type scale, layout, motion (float vs reduced-motion
+   diagrams), editorial components on paper AND panel, story elements (timeline, chapter nodes, panel with workflow
+   steps + Revise arrow), interaction states, then the real header + hero full width. Click a workflow step → it
+   becomes selected (copper border + marker) and the "Selected:" line updates.
+8. `console` — expect no errors (hydration warnings included).
+
+**Sized screenshots and reduced motion.** The Fredrin browser has no viewport or media emulation; for 1440 / 390 widths
+and `prefers-reduced-motion: reduce`, use a Playwright script (headless chromium, `viewport`, `reducedMotion: 'reduce'`)
+from a scratch directory, and check `document.documentElement.scrollWidth === clientWidth` for overflow.
 
 Scroll-triggered sections only appear once scrolled into view: scroll with `eval "window.scrollTo(0, document.querySelector('#career').offsetTop)"` and wait ~1s before a screenshot.
 
@@ -81,8 +90,11 @@ Leave `.fredrin/tmp/` (git-ignored) as is; nothing else is written.
 
 | Feature | Route / anchor | Code |
 |---------|----------------|------|
-| Header nav, scroll progress bar, footer | `/` | `src/components/home/PortfolioPage.tsx` |
-| Hero (name reveal, links, scroll arrow) | `/` | `src/components/home/Hero.tsx`, `src/components/ui/text-reveal.tsx` |
+| Scroll progress bar, footer (`#contact`) | `/` | `src/components/home/PortfolioPage.tsx` |
+| Site header | `/`, `/system` | `src/components/home/SiteHeader.tsx` |
+| Hero (headline, summary, story link, diagram) | `/` | `src/components/home/Hero.tsx`, `src/components/home/HeroDiagram.tsx` |
+| Design system page | `/system` | `src/app/system/page.tsx`, `src/components/system/` |
+| Editorial primitives | `/system` | `src/components/ui/*` |
 | Story + animated stats | `/#story` | `src/components/home/Story.tsx` |
 | Career timeline + scroll thread | `/#career` | `src/components/home/CareerTimeline.tsx` |
 | Product grid | `/#products` | `src/components/home/ProductGrid.tsx` |

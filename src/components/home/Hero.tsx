@@ -1,68 +1,38 @@
-'use client'
+import { Heading, MonoLabel, Text, TextLink } from '@/components/ui'
+import { hero, profile } from '@/content/portfolio'
+import { HeroDiagram } from './HeroDiagram'
 
-import { Button, Heading, Text, TextReveal } from '@/components/ui'
-import { ArrowDown, ArrowUpRight } from 'lucide-react'
-import { motion } from 'motion/react'
-import { links, profile } from '@/content/portfolio'
-
+/**
+ * First screen: the approved headline (one desktop line per entry), the summary, the story
+ * link and the location, with the architectural drawing beside it — under it on narrow
+ * screens. The text renders visible from the server; only the drawing moves, once.
+ */
 export function Hero() {
   return (
-    <section className='relative flex min-h-svh flex-col items-center justify-center px-6 text-center'>
-      <motion.div
-        className='mb-6 font-mono text-xs uppercase tracking-[0.3em] text-muted-foreground'
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-      >
-        {profile.role} · {profile.location}
-      </motion.div>
-
-      {/* TextReveal renders block-level divs, which a heading cannot contain — the heading
-          carries the name for assistive tech, the reveal is the visible (hidden-to-AT) copy. */}
-      <Heading level={1} className='sr-only'>
-        {profile.name}
-      </Heading>
-      <div aria-hidden className='font-serif text-5xl font-semibold leading-tight text-foreground sm:text-7xl'>
-        <TextReveal text={profile.name} />
-      </div>
-
-      <motion.div
-        className='mt-8 max-w-2xl'
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.6 }}
-      >
-        <Text size='lg' className='text-muted-foreground'>
-          {profile.thesis}
+    <section
+      aria-labelledby='hero-title'
+      className='mx-auto grid max-w-content items-center gap-12 px-gutter pt-32 pb-section lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-16 lg:pt-40'
+    >
+      <div className='flex flex-col gap-8'>
+        <Heading id='hero-title' level={1} size='display' weight='normal' className='font-display text-foreground'>
+          {hero.headline.map((line, i) => (
+            <span key={line} className='lg:block'>
+              {line}
+              {i < hero.headline.length - 1 && ' '}
+            </span>
+          ))}
+        </Heading>
+        <Text size='lede' className='max-w-measure text-muted-foreground'>
+          {hero.summary}
         </Text>
-      </motion.div>
-
-      <motion.div
-        className='mt-10 flex flex-wrap items-center justify-center gap-3'
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.9 }}
-      >
-        {links.map((link) => (
-          <Button key={link.href} asChild variant='outline'>
-            <a href={link.href} target='_blank' rel='noreferrer'>
-              {link.label}
-              <ArrowUpRight className='h-4 w-4' />
-            </a>
-          </Button>
-        ))}
-      </motion.div>
-
-      <motion.a
-        href='#story'
-        aria-label='Scroll to story'
-        className='absolute bottom-10 text-muted-foreground transition-colors hover:text-primary'
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1, y: [0, 8, 0] }}
-        transition={{ opacity: { delay: 1.4 }, y: { duration: 2, repeat: Number.POSITIVE_INFINITY, delay: 1.4 } }}
-      >
-        <ArrowDown className='h-5 w-5' />
-      </motion.a>
+        <div className='flex flex-wrap items-center gap-x-10 gap-y-4'>
+          <TextLink href={hero.cta.href} icon='down'>
+            {hero.cta.label}
+          </TextLink>
+          <MonoLabel>{profile.location}</MonoLabel>
+        </div>
+      </div>
+      <HeroDiagram className='mx-auto max-w-md lg:max-w-none' />
     </section>
   )
 }

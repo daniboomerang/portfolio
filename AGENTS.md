@@ -1,6 +1,6 @@
 # AGENTS.md — conventions for agents working on this repo
 
-A public, read-only, single-page marketing site. No auth, no database, no CMS, no API routes.
+A public, read-only, single-page marketing site, plus a `/system` design-system page. No auth, no database, no CMS, no API routes.
 
 ## Stack
 
@@ -8,12 +8,13 @@ Next.js 16 App Router (the page prerenders as static), Tailwind v4, TypeScript s
 
 ## Rules
 
-- **Copy lives in `src/content/portfolio.ts`, and only real, already-public facts go there** — Daniel's GitHub profile README and CV. No invented claims; no private CV fields (phone, date of birth).
-- **Theme is semantic CSS variables in `src/app/globals.css`.** Use token classes (`bg-background`, `text-muted-foreground`, `border-border`, `text-primary`…). No hardcoded palette colors (`bg-zinc-900`, hex, rgb) in components.
-- **Primitives come from `@/components/ui`** (the barrel). Add a primitive there, shadcn-style, before using it in a section.
+- **Copy lives in `src/content/portfolio.ts`, and only real, already-public facts go there** — Daniel's GitHub profile README, CV and the owner's approved design-brief copy. No invented claims; no private CV fields (phone, date of birth).
+- **Theme is semantic CSS variables in `src/app/globals.css`.** Use token classes (`bg-background`, `text-muted-foreground`, `border-rule`, `bg-copper`, `text-display`, `px-gutter`, `max-w-content`, `ease-editorial`, `duration-(--duration-base)`…). No hardcoded palette colors (`bg-zinc-900`, hex, rgb), px font sizes, ms durations or inline `style` in components: add a token first. Copper fails AA for small text on paper, so it is for lines, nodes and large type only.
+- **The dark Vinaya panel** is `<Panel>` (`data-surface='panel'`), which re-declares the palette for its subtree; components inside keep using the same token classes. A scope that overrides a brand role must also re-declare the aliases built on it (`--border`, `--ring`, `--success`).
+- **Primitives come from `@/components/ui`** (the barrel). Add a primitive there, shadcn-style, before using it in a section, and show it on `/system` (`src/components/system/SystemPage.tsx`) in every state, on paper and on the panel. `cn()` knows the custom type scale; add a new `text-*` size to `src/lib/utils.ts` too, or tailwind-merge drops it.
 - **Icons: `lucide-react` only.**
-- **Animation uses `motion/react`.** Reduced motion is handled once by `<MotionConfig reducedMotion='user'>` in `PortfolioPage` — don't add per-component checks.
-- **Color scheme**: `data-theme` on `<html>`, persisted in the `atta-color-scheme` cookie, dark by default. The inline script in `src/app/layout.tsx` corrects it before first paint; `ColorSchemeToggle` flips it. Keep `src/lib/color-scheme.ts` as the single contract.
+- **Animation uses `motion/react`.** Reduced motion is handled once by `MotionProvider` (`<MotionConfig reducedMotion='user'>`) in the root layout — don't add per-component checks. Durations and easing come from `src/lib/motion.ts`, which mirrors the CSS motion tokens. Text must render visible from the server (no SSR `opacity: 0` on hero copy).
+- **Color scheme**: `data-theme` on `<html>`, persisted in the `atta-color-scheme` cookie, light by default (the redesign's paper look). The inline script in `src/app/layout.tsx` corrects it before first paint; `ColorSchemeToggle` flips it. Keep `src/lib/color-scheme.ts` as the single contract.
 - Adding a product to the grid: append to `products` in `src/content/portfolio.ts`.
 - Code style is whatever `bun run lint` (Biome) says: single quotes, no semicolons, 2-space indent, 120 columns.
 

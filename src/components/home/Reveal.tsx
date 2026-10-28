@@ -2,6 +2,7 @@
 
 import { motion } from 'motion/react'
 import type { ReactNode } from 'react'
+import { distance, duration, ease } from '@/lib/motion'
 
 type RevealProps = {
   children: ReactNode
@@ -12,16 +13,16 @@ type RevealProps = {
 
 /**
  * Fades and lifts its children in the first time they scroll into view. Reduced motion is
- * handled once, by the `MotionConfig` at the page root, not per instance.
+ * handled once, by the root `MotionProvider`, not per instance.
  */
 export function Reveal({ children, className, delay = 0 }: RevealProps) {
   return (
     <motion.div
       className={className}
-      initial={{ opacity: 0, y: 24 }}
+      initial={{ opacity: 0, y: distance.reveal }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '0px 0px -15% 0px' }}
-      transition={{ duration: 0.7, delay, ease: [0.25, 0.46, 0.45, 0.94] }}
+      transition={{ duration: duration.reveal, delay, ease: ease.editorial }}
     >
       {children}
     </motion.div>

@@ -1,11 +1,22 @@
-// Primitives vendored from the AttaLabs monorepo's shared UI package (animate library) — only what
-// the portfolio renders. Import from '@/components/ui'.
+// Primitives vendored from the AttaLabs monorepo's shared UI package (animate library), plus the
+// editorial primitives of the redesign (shown on /system). Import from '@/components/ui'.
 export { Badge } from './badge'
 export { Button, buttonVariants } from './button'
 export { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from './card'
+export { ChapterHeader } from './chapter-header'
+export { ChapterNode, chapterNodeVariants } from './chapter-node'
 export { ColorSchemeToggle } from './color-scheme-toggle'
+export { ExhibitFrame } from './exhibit-frame'
+export { ExpandableDetail } from './expandable-detail'
 export { Heading } from './heading'
+export { MonoLabel } from './mono-label'
+export { Panel } from './panel'
+export { PullQuote } from './pull-quote'
+export { RevisionArrow } from './revision-arrow'
 export { Separator } from './separator'
 export { Text } from './text'
+export { TextLink, textLinkVariants } from './text-link'
 export { TextReveal } from './text-reveal'
+export { Timeline, TimelineStop } from './timeline'
 export { Toggle, toggleVariants } from './toggle'
+export { WorkflowStep } from './workflow-step'

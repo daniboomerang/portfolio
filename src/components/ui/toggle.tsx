@@ -10,10 +10,11 @@ import { cn } from '@/lib/utils'
  * animate-ui's toggle: a Radix toggle rendered as a motion button, with an animated
  * highlight behind the content while it is pressed. Upstream composes three primitives
  * (Toggle, ToggleHighlight, ToggleItem) through a context; the portfolio only ever needs
- * the composed control, so they are folded into one component here.
+ * the composed control, so they are folded into one component here. Keyboard focus uses the
+ * global `:focus-visible` outline from globals.css, like every other control on the page.
  */
 const toggleVariants = cva(
-  "inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium hover:bg-muted/40 hover:text-muted-foreground disabled:pointer-events-none disabled:opacity-50 data-[state=on]:text-accent-foreground [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 [&_svg]:shrink-0 focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] outline-none transition-[color,background-color,box-shadow] duration-200 ease-in-out aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive whitespace-nowrap",
+  "inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium hover:bg-muted/40 hover:text-muted-foreground disabled:pointer-events-none disabled:opacity-50 data-[state=on]:text-accent-foreground [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 [&_svg]:shrink-0 transition-[color,background-color,box-shadow] duration-(--duration-base) ease-editorial aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive whitespace-nowrap",
   {
     variants: {
       variant: {
@@ -65,19 +66,13 @@ function Toggle({
   // highlight and content are presentational.
   return (
     <TogglePrimitive.Root pressed={isPressed} onPressedChange={handlePressedChange} disabled={disabled} asChild>
-      <motion.button
-        data-slot='toggle'
-        className='relative rounded-md outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px]'
-        whileTap={{ scale: 0.95 }}
-        {...props}
-      >
+      <motion.button data-slot='toggle' className='relative rounded-md' whileTap={{ scale: 0.95 }} {...props}>
         <AnimatePresence>
           {isPressed && (
             <motion.div
               data-slot='toggle-highlight'
               data-state={state}
-              className='bg-accent rounded-md'
-              style={{ position: 'absolute', zIndex: 0, inset: 0 }}
+              className='absolute inset-0 z-0 rounded-md bg-accent'
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -88,8 +83,11 @@ function Toggle({
           data-slot='toggle-item'
           data-state={state}
           data-disabled={disabled}
-          className={cn(toggleVariants({ variant, size }), className, 'cursor-pointer disabled:cursor-not-allowed')}
-          style={{ position: 'relative', zIndex: 1 }}
+          className={cn(
+            toggleVariants({ variant, size }),
+            className,
+            'relative z-1 cursor-pointer disabled:cursor-not-allowed'
+          )}
         >
           {children as React.ReactNode}
         </motion.div>
