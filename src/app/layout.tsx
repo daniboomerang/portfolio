@@ -23,6 +23,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <link rel='preconnect' href='https://fonts.googleapis.com' />
         <link rel='preconnect' href='https://fonts.gstatic.com' crossOrigin='anonymous' />
         <link rel='stylesheet' href={FONTS_URL} />
+        {/* Reveals ship their hidden start state from the server; without JavaScript, show them. */}
+        <noscript>
+          <style>{'[data-reveal]{opacity:1!important;transform:none!important}'}</style>
+        </noscript>
       </head>
       <body className='min-h-screen bg-background text-foreground'>
         <MotionProvider>{children}</MotionProvider>

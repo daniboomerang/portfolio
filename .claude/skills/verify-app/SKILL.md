@@ -52,10 +52,19 @@ Use Fredrin's browser (`fredrin browser …`; with a ticket bound it is the Live
    Work / Contact + scheme toggle right (links visible at every width). Hero: "I build software. / And the systems /
    behind it." (three lines on desktop), the "18 years building software…" summary, Explore the story ↓, THAILAND ·
    GMT+7, and the line-drawn planes diagram on the right (under the text below `lg`), floating once by a few px.
-2. Click nav **Story** (or `navigate http://localhost:3009/#story`) — three paragraphs fade in; counters run to 15+ / 4+ / 3.
-3. **Career** (`#career`) — timeline thread fills as you scroll; each entry's dot springs in; education last.
-4. **Products** (`#products`) — four cards (Vāda, Herald, Vinaya, Atta Labs) that lift on hover and link out.
-5. Scroll to the bottom — footer "Let's build something that holds." with the three links.
+2. Click nav **Story** (or `navigate http://localhost:3009/#story`) — chapter 01: THE FOUNDATIONS / 2008–2021 timeline
+   (Zennio 2008, Amadeus 2010, Freelance 2013, Conferize 2016, Sherpany 2020; below `md` it scrolls inside itself, the
+   page never does, and Tab + ArrowRight scrolls it), then Elixir Games (text left, launcher schematic right) and Game7
+   (quests schematic left, text right). Every preview is labelled "Illustrative schematic".
+3. Scroll on: **02 The AI era** (three dated phases with drawings), **03 Faster was only part of it** (pull quote,
+   branching lines into the panel), **04 Vinaya** (`#vinaya`, dark panel): Brief → Developer → Code review + Security
+   review (dashed "In parallel" group) → Checks → Accepted ("Not a deploy"), and the Revise arrow from the review group
+   back to Developer; then "What needed my judgment?" labelled "Illustrative example · not a recorded run", the Atta
+   Engine strip and "Then I used it to build."
+4. Nav **Work** (`#work`) — chapter 05: AttaLabs, Herald, Vinaya Portal / Studio, Vāda with their links, then the
+   Onchain Rewind demo exhibit (badge, "About this demo" expands, Try the demo / Inspect the build history).
+5. Nav **Contact** (`#contact`) — chapter 06 with "Let's build something together" (mailto), then the footer links and
+   "Built with Fredrin."
 6. **Color scheme**: click the toggle → `<html data-theme>` flips light → dark, `document.cookie` has
    `atta-color-scheme=dark`; `reload` → still dark (no light flash). Click again to restore light.
    Check with `eval "document.documentElement.dataset.theme + ' | ' + document.cookie"`.
@@ -69,12 +78,12 @@ Use Fredrin's browser (`fredrin browser …`; with a ticket bound it is the Live
 and `prefers-reduced-motion: reduce`, use a Playwright script (headless chromium, `viewport`, `reducedMotion: 'reduce'`)
 from a scratch directory, and check `document.documentElement.scrollWidth === clientWidth` for overflow.
 
-Scroll-triggered sections only appear once scrolled into view: scroll with `eval "window.scrollTo(0, document.querySelector('#career').offsetTop)"` and wait ~1s before a screenshot.
+Scroll-triggered sections only appear once scrolled into view: scroll with `eval "window.scrollTo(0, document.querySelector('#vinaya').offsetTop)"` and wait ~1s before a screenshot.
 
 ## 4. Evidence
 
-- `screenshot` each of: hero, story, career, products, light-mode hero. Save under `.fredrin/tmp/`.
-- Upload for review: `./.fredrin/fredrin ticket upload <png> --kind after --pair <hero|story|career|products>` (and
+- `screenshot` each of: hero, chapters 01–06, light-mode hero. Save under `.fredrin/tmp/`.
+- Upload for review: `./.fredrin/fredrin ticket upload <png> --kind after --pair <hero|chapter-01|…|page-desktop|page-mobile>` (and
   `--kind before` for the pre-change shot of the same screen).
 - Record what you did, what state it produced (attribute/cookie values, console output) — not just "looks fine".
 
@@ -90,14 +99,18 @@ Leave `.fredrin/tmp/` (git-ignored) as is; nothing else is written.
 
 | Feature | Route / anchor | Code |
 |---------|----------------|------|
-| Scroll progress bar, footer (`#contact`) | `/` | `src/components/home/PortfolioPage.tsx` |
+| Scroll progress bar, chapter order | `/` | `src/components/home/PortfolioPage.tsx` |
 | Site header | `/`, `/system` | `src/components/home/SiteHeader.tsx` |
 | Hero (headline, summary, story link, diagram) | `/` | `src/components/home/Hero.tsx`, `src/components/home/HeroDiagram.tsx` |
 | Design system page | `/system` | `src/app/system/page.tsx`, `src/components/system/` |
 | Editorial primitives | `/system` | `src/components/ui/*` |
-| Story + animated stats | `/#story` | `src/components/home/Story.tsx` |
-| Career timeline + scroll thread | `/#career` | `src/components/home/CareerTimeline.tsx` |
-| Product grid | `/#products` | `src/components/home/ProductGrid.tsx` |
+| Chapter wrapper | — | `src/components/home/chapters/Chapter.tsx` |
+| 01 Built with people + schematics | `/#story` | `src/components/home/chapters/BuiltWithPeople.tsx`, `LauncherSchematic.tsx`, `QuestsSchematic.tsx` |
+| 02 The AI era | `/#ai-era` | `src/components/home/chapters/AiEra.tsx` |
+| 03 Faster was only part of it | `/#ownership` | `src/components/home/chapters/Ownership.tsx` |
+| 04 Vinaya (panel, static loop) | `/#vinaya` | `src/components/home/chapters/Vinaya.tsx`, `VinayaWorkflow.tsx` |
+| 05 Work + Onchain Rewind demo | `/#work` | `src/components/home/chapters/Work.tsx`, `WorkSchematic.tsx` |
+| 06 Contact, footer | `/#contact` | `src/components/home/chapters/Contact.tsx`, `src/components/home/SiteFooter.tsx` |
 | Light/dark toggle + cookie | header | `src/components/ui/color-scheme-toggle.tsx`, `src/lib/color-scheme.ts`, `src/app/layout.tsx` |
 | Copy | — | `src/content/portfolio.ts` |
 | Theme tokens | — | `src/app/globals.css` |

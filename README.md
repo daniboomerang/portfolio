@@ -1,6 +1,6 @@
 # Portfolio
 
-Daniel Estevez's one-page animated portfolio — the story, the career, and every product shipping out of Atta Labs.
+Daniel Estevez's one-page portfolio — the hero and six chapters: the career, the AI transition, Vinaya, and the work built through it — plus a `/system` design-system page.
 
 Next.js 16 (App Router, static) + Tailwind v4 + TypeScript (strict) + `motion`, linted and formatted with Biome, managed with bun.
 
@@ -22,8 +22,8 @@ There is no test suite yet; `typecheck`, `lint` and `build` are the gates.
 
 | Path | What |
 |------|------|
-| `src/content/portfolio.ts` | Every fact on the page — profile, story, career, products |
-| `src/components/home/` | The page sections (`PortfolioPage`, `Hero`, `Story`, `CareerTimeline`, `ProductGrid`, `Reveal`) |
+| `src/content/portfolio.ts` | Every fact on the page — profile, hero, chapters 01–06, footer |
+| `src/components/home/` | The page (`PortfolioPage`, `SiteHeader`, `Hero`, `SiteFooter`, `Reveal`) and `chapters/` (one component per chapter, plus the labelled schematics) |
 | `src/components/ui/` | shadcn-style primitives vendored from the AttaLabs monorepo's animate UI library |
 | `src/app/globals.css` | Theme tokens (light + dark) as semantic CSS variables, Tailwind v4 `@theme` mapping |
 | `src/lib/` | `cn()` and the color-scheme cookie contract |

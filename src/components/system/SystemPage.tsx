@@ -6,6 +6,7 @@ import { type ReactNode, useState } from 'react'
 import { Hero } from '@/components/home/Hero'
 import { HeroDiagram } from '@/components/home/HeroDiagram'
 import { SiteHeader } from '@/components/home/SiteHeader'
+import { VinayaWorkflow } from '@/components/home/chapters/VinayaWorkflow'
 import {
   ChapterHeader,
   ChapterNode,
@@ -296,8 +297,8 @@ export function SystemPage() {
         </Section>
 
         <Section id='story' title='Story elements'>
-          <Specimen label='Timeline stop (horizontal; scrolls inside itself on small screens)'>
-            <Timeline label='Early career, 2008 to 2021 (fixture)'>
+          <Specimen label='Timeline stop (horizontal; scrolls inside itself on small screens, with the hint line)'>
+            <Timeline label='Early career, 2008 to 2021 (fixture)' hint='Scroll for more'>
               {timelineFixture.map((stop, i) => (
                 <TimelineStop key={stop.year} {...stop} selected={i === 4} />
               ))}
@@ -354,11 +355,12 @@ export function SystemPage() {
                 </TextLink>
               </div>
             </Specimen>
-            <Specimen label='Workflow step: default · selected · disabled'>
-              <div className='grid gap-3 sm:grid-cols-3'>
+            <Specimen label='Workflow step: default · selected · disabled · static (read-only)'>
+              <div className='grid gap-3 sm:grid-cols-2'>
                 <WorkflowStep icon={Code} title='Default' />
                 <WorkflowStep icon={Code} title='Selected' selected />
                 <WorkflowStep icon={Code} title='Disabled' disabled />
+                <WorkflowStep icon={Code} title='Static' detail='Not a control.' static />
               </div>
             </Specimen>
             <Specimen label='Expandable detail: collapsed · expanded'>
@@ -392,10 +394,25 @@ export function SystemPage() {
         </div>
         {/* A specimen, not a second page: inert keeps its nav, toggle and h1 out of the tab order
             and the accessibility tree. */}
-        <div inert className='border-y border-rule'>
+        <div inert className='border-y border-rule pb-16'>
           <SiteHeader />
           <Hero />
         </div>
+      </section>
+
+      <section aria-labelledby='chapter-diagram' className='flex flex-col gap-8 pb-section'>
+        <div className='mx-auto flex w-full max-w-content flex-col gap-2 border-t border-rule px-gutter pt-10'>
+          <Heading id='chapter-diagram' level={2} size='title' weight='normal' className='font-display'>
+            Chapter 04 workflow
+          </Heading>
+          <Text size='small' className='text-muted-foreground'>
+            The real static Vinaya loop from the home page, on the panel: static steps, the parallel review group, the
+            Checks gate and the revision arrow from review back to Developer.
+          </Text>
+        </div>
+        <Panel className='mx-auto w-full max-w-content px-gutter py-10'>
+          <VinayaWorkflow />
+        </Panel>
       </section>
     </>
   )

@@ -11,7 +11,7 @@ export function Hero() {
   return (
     <section
       aria-labelledby='hero-title'
-      className='mx-auto grid max-w-content items-center gap-12 px-gutter pt-32 pb-section lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-16 lg:pt-40'
+      className='mx-auto grid max-w-content items-center gap-12 px-gutter pt-32 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-16 lg:pt-40'
     >
       <div className='flex flex-col gap-8'>
         <Heading id='hero-title' level={1} size='display' weight='normal' className='font-display text-foreground'>

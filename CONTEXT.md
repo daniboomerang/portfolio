@@ -1,16 +1,21 @@
 # CONTEXT.md — vocabulary
 
-- **Portfolio page** — the route `/`, rendered by `PortfolioPage`: fixed **site header**, scroll progress bar, then the sections below, then the footer (`#contact`).
+- **Portfolio page** — the route `/`, rendered by `PortfolioPage`: fixed **site header**, scroll progress bar, the hero, chapters 01–06, then the **site footer**.
 - **Site header** — `SiteHeader`: DANI ESTEVEZ / SOFTWARE ENGINEER, the Story · Work · Contact links and the scheme toggle.
 - **/system** — the design-system page: every token and editorial primitive on fixture data, on paper and on the panel, plus the real header and hero.
 - **Hero** — first screen: the approved three-line headline, the “18 years…” summary, the Explore the story link, the location (Thailand · GMT+7) and the **hero diagram** (sparse SVG planes, connectors, copper nodes; under the text on narrow screens).
-- **Story** (`#story`) — three narrative paragraphs plus the **stats** row (animated counters).
-- **Career** (`#career`) — the **career timeline**: an ordered list of roles with a vertical **thread** that fills as you scroll, a dot per entry, and the education entry last.
-- **Products** (`#products`) — the **product grid**: one card per Atta Labs product, linking out.
-- **Content** — the typed data in `src/content/portfolio.ts` (`profile`, `nav`, `hero`, `links`, `story`, `stats`, `career`, `education`, `products`). The only place page copy lives; `/system` fixtures live in `src/components/system/fixtures.ts`.
+- **Chapter** — one numbered section of the page (`Chapter` in `src/components/home/chapters/`): a `ChapterHeader` on the thread, then the body aligned with the title (`md:pl-indent`). Paper chapters end flush; the next chapter's top space is the gap.
+- **01 Built with people** (`#story`) — the **foundations timeline** (2008–2021, five stops, scrolls inside itself on narrow screens with a "Scroll for more" hint) and two **work features**, Elixir Games and Game7, alternating text and preview.
+- **02 The AI era** (`#ai-era`) — three dated **phases** (Late 2022, Early 2024, Spring 2026), each with a line drawing.
+- **03 Faster was only part of it** (`#ownership`) — the ownership problem, the pull quote, branching lines gathering toward 04.
+- **04 Vinaya** (`#vinaya`) — the dark **Panel** chapter: the static **Vinaya loop** (Brief → Developer → Code review ∥ Security review → Checks → Accepted, Revise from the review stage back to Developer), the ownership line, **What needed my judgment?** (an illustrative example, labelled as such), the **Atta Engine strip** and "Then I used it to build."
+- **05 The work that came through it** (`#work`) — the **work exhibits** (AttaLabs, Herald, Vinaya Portal / Studio, Vāda) and the separate **demo exhibit**, Onchain Rewind.
+- **06 Good software takes people** (`#contact`) — the mailto call to action; then the **site footer** (profile links, location, provenance).
+- **Schematic** — a labelled SVG/DOM stand-in for a product screenshot that has not been supplied. It always says it is a schematic; it never names a real game, customer or metric.
+- **Content** — the typed data in `src/content/portfolio.ts` (`profile`, `nav`, `hero`, `builtWithPeople`, `aiEra`, `ownership`, `vinaya`, `work`, `demo`, `contact`, `footerLinks`, `provenance`). The only place page copy lives; `/system` fixtures live in `src/components/system/fixtures.ts`.
 - **Reveal** — the fade-and-lift-on-scroll wrapper every section uses.
 - **Color scheme** — `light` | `dark` on `<html data-theme>`, stored in the `atta-color-scheme` cookie; light is the default.
 - **Tokens** — the semantic CSS variables in `globals.css`: colours (`--background` paper, `--foreground` ink, `--muted-foreground`, `--copper`, `--moss`, `--rule`, `--panel`…), type roles and scale (`font-display`, `text-display` … `text-label`), layout (`max-w-content`, `px-gutter`, `py-section`) and motion (`--duration-*`, `ease-editorial`).
 - **Panel** — the deep charcoal Vinaya surface (`<Panel>`, `data-surface='panel'`), which re-declares the palette for everything inside it.
 - **Editorial primitives** — `ChapterHeader`, `ChapterNode`, `PullQuote`, `MonoLabel`, `TextLink`, `ExhibitFrame`, `Timeline`/`TimelineStop`, `Panel`, `WorkflowStep`, `RevisionArrow`, `ExpandableDetail` in `@/components/ui`.
-- **Vinaya** — one of the products in the grid (Atta Labs' codebase harness); later redesign tickets give it a dedicated interaction.
+- **Vinaya** — Atta Labs' codebase harness, the subject of chapter 04; its interaction and the scroll thread are the next redesign ticket.

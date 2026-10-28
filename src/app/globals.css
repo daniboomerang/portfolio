@@ -193,6 +193,8 @@
   --spacing-header: 64px;
   --spacing-node: 48px;
   --spacing-dot: 10px;
+  /* Chapter bodies align with the title: the chapter node plus ChapterHeader's gap-x-6. */
+  --spacing-indent: calc(var(--spacing-node) + 1.5rem);
 
   --ease-editorial: cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -301,6 +303,11 @@
       transition-duration: 0.01ms !important;
       animation-duration: 0.01ms !important;
       animation-iteration-count: 1 !important;
+    }
+    /* motion/react keeps the opacity fade under reducedMotion='user'; show reveals at once. */
+    [data-reveal] {
+      opacity: 1 !important;
+      transform: none !important;
     }
   }
   :focus-visible {
