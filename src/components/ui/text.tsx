@@ -6,7 +6,11 @@ const sizeClasses = {
   sm: 'text-sm',
   md: 'text-base',
   lg: 'text-lg',
-  xl: 'text-xl'
+  xl: 'text-xl',
+  // Editorial roles (tokens in globals.css): running copy, the larger opening paragraph, captions.
+  body: 'text-body',
+  lede: 'text-lede',
+  small: 'text-small'
 }
 
 const weightClasses = {

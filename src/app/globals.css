@@ -5,128 +5,198 @@
    prefers-color-scheme media query. */
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
-/* Theme tokens. These are the exact values the portfolio's `portfolioConfig` theme produced
-   in the AttaLabs Sanity project (l5n0n8nn) at port time — IBM Plex type, square corners,
-   offset shadows. Light is the base; dark overrides it under [data-theme="dark"]. Change the
-   look here, through these semantic variables — never with palette classes in components. */
+/* Theme tokens — the editorial palette from the redesign brief (warm paper, charcoal ink,
+   copper connections, moss accents, a deep charcoal panel). Light is the base and the
+   default scheme; dark overrides it under [data-theme="dark"]; [data-surface="panel"]
+   re-declares the palette for the dark Vinaya panel in either scheme. Change the look here,
+   through these semantic variables — never with palette classes, hex or inline styles in
+   components. Every pairing used for text meets WCAG AA; copper on paper (≈3.7:1) is for
+   lines, nodes and large type only. */
 :root {
-  --accent: oklch(0.905 0.02 80);
-  --accent-foreground: oklch(0.16 0.012 70);
-  --background: oklch(0.975 0.008 85);
-  --border: oklch(0.30 0.012 70);
-  --card: oklch(0.99 0.004 85);
-  --card-foreground: oklch(0.16 0.012 70);
-  --chart-1: oklch(0.52 0.12 155);
-  --chart-2: oklch(0.52 0.13 250);
-  --chart-3: oklch(0.62 0.14 60);
-  --chart-4: oklch(0.50 0.17 300);
-  --chart-5: oklch(0.55 0.17 28);
-  --destructive: oklch(0.52 0.19 28);
-  --destructive-foreground: oklch(0.99 0.004 85);
-  --foreground: oklch(0.16 0.012 70);
-  --gradient-background: linear-gradient(to bottom, oklch(0.975 0.008 85), oklch(0.955 0.01 84));
-  --gradient-card: linear-gradient(to bottom right, oklch(0.99 0.004 85), oklch(0.975 0.008 85));
-  --gradient-primary: linear-gradient(to right, oklch(0.16 0.012 70), oklch(0.26 0.012 70));
-  --header-background: linear-gradient(to bottom, oklch(0.975 0.008 85), oklch(0.955 0.01 84));
-  --input: oklch(0.82 0.014 78);
-  --muted: oklch(0.945 0.012 82);
-  --muted-foreground: oklch(0.47 0.015 70);
-  --popover: oklch(0.99 0.004 85);
-  --popover-foreground: oklch(0.16 0.012 70);
-  --primary: oklch(0.16 0.012 70);
-  --primary-foreground: oklch(0.975 0.008 85);
-  --primary-hover: oklch(0.1 0.012 70);
-  --ring: oklch(0.52 0.12 155);
-  --secondary: oklch(0.93 0.014 82);
-  --secondary-foreground: oklch(0.16 0.012 70);
-  --secondary-hover: oklch(0.89 0.014 82);
-  --shadow-color: oklch(0.16 0.012 70);
-  --sidebar: oklch(0.955 0.01 84);
-  --sidebar-accent: oklch(0.905 0.02 80);
-  --sidebar-accent-foreground: oklch(0.16 0.012 70);
-  --sidebar-border: oklch(0.30 0.012 70);
-  --sidebar-foreground: oklch(0.16 0.012 70);
-  --sidebar-primary: oklch(0.16 0.012 70);
-  --sidebar-primary-foreground: oklch(0.975 0.008 85);
-  --sidebar-ring: oklch(0.52 0.12 155);
-  --success: oklch(0.52 0.12 155);
-  --success-foreground: oklch(0.99 0.004 85);
-  --warning: oklch(0.80 0.15 80);
-  --warning-foreground: oklch(0.16 0.012 70);
-  --font-sans: IBM Plex Sans, sans-serif;
-  --font-serif: IBM Plex Serif, serif;
-  --font-mono: IBM Plex Mono, monospace;
-  --tracking-normal: 0em;
-  --radius: 0rem;
-  --spacing: 0.25rem;
-  --shadow-2xs: 1px 1px 0 0 var(--shadow-color);
-  --shadow-xs: 1px 1px 0 0 var(--shadow-color);
-  --shadow-sm: 2px 2px 0 0 var(--shadow-color);
-  --shadow: 3px 3px 0 0 var(--shadow-color);
-  --shadow-md: 4px 4px 0 0 var(--shadow-color);
-  --shadow-lg: 6px 6px 0 0 var(--shadow-color);
-  --shadow-xl: 8px 8px 0 0 var(--shadow-color);
-  --shadow-2xl: 12px 12px 0 0 var(--shadow-color);
+  /* Brand roles (brief baseline). */
+  --copper: #c75c26;
+  --copper-foreground: #fffaf0;
+  --moss: #626e4b;
+  --moss-foreground: #f6f1e6;
+  --rule: rgb(36 40 32 / 0.2);
+  --rule-strong: rgb(36 40 32 / 0.45);
+  --panel: #202823;
+  --panel-foreground: #efe9dc;
+
+  /* Semantic (shadcn) roles mapped onto the brand roles. */
+  --background: #f6f1e6;
+  --foreground: #242820;
+  --card: #faf6ee;
+  --card-foreground: #242820;
+  --popover: #faf6ee;
+  --popover-foreground: #242820;
+  --primary: #242820;
+  --primary-foreground: #f6f1e6;
+  --primary-hover: #151812;
+  --secondary: #ece5d6;
+  --secondary-foreground: #242820;
+  --secondary-hover: #e3dbc9;
+  --muted: #efe9dc;
+  --muted-foreground: #69695f;
+  --accent: #ece5d6;
+  --accent-foreground: #242820;
+  --border: var(--rule);
+  --input: rgb(36 40 32 / 0.3);
+  --ring: var(--copper);
+  --destructive: #a8321e;
+  --destructive-foreground: #fffaf0;
+  --success: var(--moss);
+  --success-foreground: var(--moss-foreground);
+  --warning: #b7791f;
+  --warning-foreground: #242820;
+  --chart-1: #626e4b;
+  --chart-2: #c75c26;
+  --chart-3: #8a7a52;
+  --chart-4: #4f5f6b;
+  --chart-5: #a8321e;
+  --gradient-background: linear-gradient(to bottom, #f6f1e6, #f2ecdf);
+  --gradient-card: linear-gradient(to bottom right, #faf6ee, #f6f1e6);
+  --gradient-primary: linear-gradient(to right, #242820, #343a2f);
+  --header-background: #f6f1e6;
+  --shadow-color: rgb(36 40 32 / 0.12);
+  color-scheme: light;
 }
 
 [data-theme="dark"] {
-  --accent: oklch(0.27 0.01 70);
-  --accent-foreground: oklch(0.94 0.008 85);
-  --background: oklch(0.14 0.008 70);
-  --border: oklch(0.42 0.01 75);
-  --card: oklch(0.18 0.008 70);
-  --card-foreground: oklch(0.94 0.008 85);
-  --chart-1: oklch(0.72 0.15 155);
-  --chart-2: oklch(0.70 0.13 250);
-  --chart-3: oklch(0.78 0.14 70);
-  --chart-4: oklch(0.70 0.16 300);
-  --chart-5: oklch(0.68 0.18 28);
-  --destructive: oklch(0.65 0.20 27);
-  --destructive-foreground: oklch(0.14 0.008 70);
-  --foreground: oklch(0.94 0.008 85);
-  --gradient-background: linear-gradient(to bottom, oklch(0.14 0.008 70), oklch(0.17 0.008 70));
-  --gradient-card: linear-gradient(to bottom right, oklch(0.18 0.008 70), oklch(0.14 0.008 70));
-  --gradient-primary: linear-gradient(to right, oklch(0.94 0.008 85), oklch(0.86 0.012 82));
-  --header-background: linear-gradient(to bottom, oklch(0.14 0.008 70), oklch(0.17 0.008 70));
-  --input: oklch(0.32 0.01 70);
-  --muted: oklch(0.23 0.008 70);
-  --muted-foreground: oklch(0.70 0.012 80);
-  --popover: oklch(0.18 0.008 70);
-  --popover-foreground: oklch(0.94 0.008 85);
-  --primary: oklch(0.94 0.008 85);
-  --primary-foreground: oklch(0.14 0.008 70);
-  --primary-hover: oklch(1 0.008 85);
-  --ring: oklch(0.72 0.15 155);
-  --secondary: oklch(0.23 0.008 70);
-  --secondary-foreground: oklch(0.94 0.008 85);
-  --secondary-hover: oklch(0.27 0.008 70);
-  --shadow-color: oklch(0 0 0);
-  --sidebar: oklch(0.17 0.008 70);
-  --sidebar-accent: oklch(0.27 0.01 70);
-  --sidebar-accent-foreground: oklch(0.94 0.008 85);
-  --sidebar-border: oklch(0.42 0.01 75);
-  --sidebar-foreground: oklch(0.94 0.008 85);
-  --sidebar-primary: oklch(0.94 0.008 85);
-  --sidebar-primary-foreground: oklch(0.14 0.008 70);
-  --sidebar-ring: oklch(0.72 0.15 155);
-  --success: oklch(0.72 0.15 155);
-  --success-foreground: oklch(0.14 0.008 70);
-  --warning: oklch(0.82 0.15 82);
-  --warning-foreground: oklch(0.14 0.008 70);
-  --font-sans: IBM Plex Sans, sans-serif;
-  --font-serif: IBM Plex Serif, serif;
-  --font-mono: IBM Plex Mono, monospace;
-  --tracking-normal: 0em;
-  --radius: 0rem;
-  --spacing: 0.25rem;
-  --shadow-2xs: 1px 1px 0 0 var(--shadow-color);
-  --shadow-xs: 1px 1px 0 0 var(--shadow-color);
-  --shadow-sm: 2px 2px 0 0 var(--shadow-color);
-  --shadow: 3px 3px 0 0 var(--shadow-color);
-  --shadow-md: 4px 4px 0 0 var(--shadow-color);
-  --shadow-lg: 6px 6px 0 0 var(--shadow-color);
-  --shadow-xl: 8px 8px 0 0 var(--shadow-color);
-  --shadow-2xl: 12px 12px 0 0 var(--shadow-color);
+  --copper: #e07a45;
+  --copper-foreground: #171b18;
+  --moss: #a3ae84;
+  --moss-foreground: #171b18;
+  --rule: rgb(236 230 216 / 0.18);
+  --rule-strong: rgb(236 230 216 / 0.42);
+  --panel: #222b25;
+  --panel-foreground: #efe9dc;
+
+  --background: #171b18;
+  --foreground: #ece6d8;
+  --card: #1d221e;
+  --card-foreground: #ece6d8;
+  --popover: #1d221e;
+  --popover-foreground: #ece6d8;
+  --primary: #ece6d8;
+  --primary-foreground: #171b18;
+  --primary-hover: #fffaf0;
+  --secondary: #262c27;
+  --secondary-foreground: #ece6d8;
+  --secondary-hover: #2e352f;
+  --muted: #222823;
+  --muted-foreground: #a9a596;
+  --accent: #262c27;
+  --accent-foreground: #ece6d8;
+  --input: rgb(236 230 216 / 0.28);
+  --destructive: #e5674f;
+  --destructive-foreground: #171b18;
+  --warning: #e0a548;
+  --warning-foreground: #171b18;
+  --chart-1: #a3ae84;
+  --chart-2: #e07a45;
+  --chart-3: #c9b98a;
+  --chart-4: #8fa3b0;
+  --chart-5: #e5674f;
+  --gradient-background: linear-gradient(to bottom, #171b18, #1b201c);
+  --gradient-card: linear-gradient(to bottom right, #1d221e, #171b18);
+  --gradient-primary: linear-gradient(to right, #ece6d8, #d9d2c2);
+  --header-background: #171b18;
+  --shadow-color: rgb(0 0 0 / 0.4);
+  color-scheme: dark;
+}
+
+/* The deep charcoal Vinaya panel. It keeps its own palette in both schemes, so every
+   component inside it (rules, labels, links, nodes) reads from the same semantic tokens. */
+[data-surface="panel"] {
+  --copper: #e07a45;
+  --copper-foreground: #202823;
+  --moss: #a3ae84;
+  --moss-foreground: #202823;
+  --rule: rgb(239 233 220 / 0.16);
+  --rule-strong: rgb(239 233 220 / 0.4);
+
+  --background: #202823;
+  --foreground: #efe9dc;
+  --card: #26302a;
+  --card-foreground: #efe9dc;
+  --popover: #26302a;
+  --popover-foreground: #efe9dc;
+  --primary: #efe9dc;
+  --primary-foreground: #202823;
+  --primary-hover: #fffaf0;
+  --secondary: #2b352f;
+  --secondary-foreground: #efe9dc;
+  --secondary-hover: #333e37;
+  --muted: #28312b;
+  --muted-foreground: #b0ac9c;
+  --accent: #2b352f;
+  --accent-foreground: #efe9dc;
+  --input: rgb(239 233 220 / 0.28);
+  color-scheme: dark;
+  /* `color` inherits as an already-resolved value, so the panel re-declares it alongside
+     the variables; otherwise text would keep the page scheme's ink on the panel. */
+  color: var(--foreground);
+  background-color: var(--background);
+}
+
+/* Static design tokens: type roles, type scale, layout, motion. Values in px are the brief's
+   own numbers; components use the generated utilities (`text-display`, `px-gutter`,
+   `max-w-content`, `ease-editorial`, `duration-(--duration-base)`…), never raw values. */
+@theme {
+  --font-display: "Instrument Serif", "IBM Plex Serif", Georgia, serif;
+
+  --text-display: clamp(48px, 6.5vw, 104px);
+  --text-display--line-height: 0.98;
+  --text-display--letter-spacing: -0.015em;
+  --text-chapter: clamp(34px, 4vw, 64px);
+  --text-chapter--line-height: 1.04;
+  --text-chapter--letter-spacing: -0.01em;
+  --text-title: clamp(24px, 2.2vw, 32px);
+  --text-title--line-height: 1.15;
+  --text-quote: clamp(26px, 3vw, 44px);
+  --text-quote--line-height: 1.2;
+  --text-lede: clamp(18px, 1.4vw, 21px);
+  --text-lede--line-height: 1.55;
+  --text-body: clamp(16px, 15px + 0.25vw, 18px);
+  --text-body--line-height: 1.6;
+  --text-small: 14px;
+  --text-small--line-height: 1.5;
+  --text-label: 12px;
+  --text-label--line-height: 1.4;
+  --text-label--letter-spacing: 0.14em;
+
+  --tracking-label: 0.14em;
+  --tracking-wordmark: 0.12em;
+
+  --container-content: 1160px;
+  --container-measure: 62ch;
+  --spacing-gutter: clamp(24px, 5vw, 80px);
+  --spacing-section: clamp(80px, 10vw, 160px);
+  --spacing-header: 64px;
+  --spacing-node: 48px;
+  --spacing-dot: 10px;
+
+  --ease-editorial: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Motion durations. Tailwind has no duration namespace, so components reference them as
+   `duration-(--duration-base)`; motion/react reads the same numbers from `src/lib/motion.ts`. */
+:root {
+  --duration-fast: 150ms;
+  --duration-base: 250ms;
+  --duration-reveal: 500ms;
+  --duration-drift: 9s;
+
+  /* Soft, low shadows — the brief rules out heavy ones. */
+  --shadow-2xs: 0 1px 0 0 var(--shadow-color);
+  --shadow-xs: 0 1px 2px 0 var(--shadow-color);
+  --shadow-sm: 0 1px 3px 0 var(--shadow-color);
+  --shadow: 0 2px 6px 0 var(--shadow-color);
+  --shadow-md: 0 4px 12px 0 var(--shadow-color);
+  --shadow-lg: 0 8px 24px 0 var(--shadow-color);
+  --shadow-xl: 0 12px 32px 0 var(--shadow-color);
+  --shadow-2xl: 0 20px 48px 0 var(--shadow-color);
 }
 
 @theme inline {
@@ -161,18 +231,27 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  --font-sans: var(--font-sans);
-  --font-mono: var(--font-mono);
-  --font-serif: var(--font-serif);
+  --color-copper: var(--copper);
+  --color-copper-foreground: var(--copper-foreground);
+  --color-moss: var(--moss);
+  --color-moss-foreground: var(--moss-foreground);
+  --color-rule: var(--rule);
+  --color-rule-strong: var(--rule-strong);
+  --color-panel: var(--panel);
+  --color-panel-foreground: var(--panel-foreground);
 
-  --radius: var(--radius);
-  --radius-sm: calc(var(--radius) - 3px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --radius-2xl: calc(var(--radius) + 8px);
-  --radius-3xl: calc(var(--radius) + 12px);
-  --radius-4xl: calc(var(--radius) + 16px);
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "IBM Plex Serif", Georgia, serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --radius: 0rem;
+  --radius-sm: 0rem;
+  --radius-md: 0rem;
+  --radius-lg: 0rem;
+  --radius-xl: 0.25rem;
+  --radius-2xl: 0.5rem;
+  --radius-3xl: 0.75rem;
+  --radius-4xl: 1rem;
 }
 
 @layer base {
@@ -182,10 +261,20 @@
   html {
     background: var(--background);
     font-size: 18px;
+    scroll-padding-top: var(--spacing-header);
   }
   body {
-    @apply bg-background text-foreground;
-    font-family: var(--font-sans);
+    @apply bg-background text-foreground font-sans;
+    -webkit-font-smoothing: antialiased;
+  }
+  /* One visible focus treatment for every keyboard-focusable element. */
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 3px;
+  }
+  ::selection {
+    background: var(--copper);
+    color: var(--copper-foreground);
   }
 }
 

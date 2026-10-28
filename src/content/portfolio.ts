@@ -25,11 +25,23 @@ export type Product = {
 }
 
 export const profile = {
-  name: 'Daniel Estevez',
-  role: 'AI Systems Engineer',
-  location: 'Thailand · Remote',
-  thesis:
-    "I build systems that scale, and I direct AI agents to build them — I never ship code I don't fully understand."
+  name: 'Dani Estevez',
+  role: 'Software Engineer',
+  location: 'Thailand · GMT+7'
+}
+
+/** Header navigation. `Work` and `Contact` point at today's sections until the chapters land. */
+export const nav: ExternalLink[] = [
+  { label: 'Story', href: '/#story' },
+  { label: 'Work', href: '/#products' },
+  { label: 'Contact', href: '/#contact' }
+]
+
+/** Approved hero copy (design brief). Each headline entry is one desktop line. */
+export const hero = {
+  headline: ['I build software.', 'And the systems', 'behind it.'],
+  summary: '18 years building software. Interfaces, infrastructure, and the judgment connecting them.',
+  cta: { label: 'Explore the story', href: '#story' }
 }
 
 export const links: ExternalLink[] = [

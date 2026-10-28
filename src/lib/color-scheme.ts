@@ -8,7 +8,8 @@ export type ColorScheme = 'light' | 'dark'
 // Same cookie name the monorepo build used, so a visitor's saved choice carries over.
 export const COLOR_SCHEME_COOKIE = 'atta-color-scheme'
 export const COLOR_SCHEME_ATTRIBUTE = 'data-theme'
-export const DEFAULT_SCHEME: ColorScheme = 'dark'
+// Light paper is the reference look (redesign brief); dark stays one toggle away.
+export const DEFAULT_SCHEME: ColorScheme = 'light'
 
 /** 1 year — same as shadcn's default theme persistence. */
 export const COLOR_SCHEME_COOKIE_MAX_AGE = 60 * 60 * 24 * 365
