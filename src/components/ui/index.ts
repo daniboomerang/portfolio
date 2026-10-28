@@ -3,7 +3,7 @@
 export { Badge } from './badge'
 export { Button, buttonVariants } from './button'
 export { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from './card'
-export { ChapterHeader } from './chapter-header'
+export { ChapterHeader, type ChapterHeaderProps } from './chapter-header'
 export { ChapterNode, chapterNodeVariants } from './chapter-node'
 export { ColorSchemeToggle } from './color-scheme-toggle'
 export { ExhibitFrame } from './exhibit-frame'

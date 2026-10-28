@@ -193,6 +193,8 @@
   --spacing-header: 64px;
   --spacing-node: 48px;
   --spacing-dot: 10px;
+  /* Chapter bodies align with the title: the chapter node plus ChapterHeader's gap-x-6. */
+  --spacing-indent: calc(var(--spacing-node) + 1.5rem);
 
   --ease-editorial: cubic-bezier(0.22, 1, 0.36, 1);
 }

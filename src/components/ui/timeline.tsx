@@ -1,17 +1,21 @@
+import { ArrowRight } from 'lucide-react'
 import type * as React from 'react'
 import { cn } from '@/lib/utils'
 
 type TimelineProps = React.HTMLAttributes<HTMLDivElement> & {
   /** Names the scroll region for assistive tech, e.g. "Early career, 2008 to 2021". */
   label: string
+  /** Visible "there is more" cue under the line on narrow screens, e.g. "Scroll for more". */
+  hint?: string
 }
 
 /**
  * A thin horizontal timeline. On narrow screens it scrolls sideways inside itself (never the
- * page); the region is focusable so arrow keys scroll it, and a fading edge shows there is more.
+ * page); the region is focusable so arrow keys scroll it, and a fading edge (plus the optional
+ * `hint` line) shows there is more.
  */
-function Timeline({ label, className, children, ...props }: TimelineProps) {
-  return (
+function Timeline({ label, hint, className, children, ...props }: TimelineProps) {
+  const region = (
     <div
       role='region'
       aria-label={label}
@@ -26,6 +30,16 @@ function Timeline({ label, className, children, ...props }: TimelineProps) {
       <ol className='relative flex min-w-max gap-10 pt-6 pr-16 md:pr-0 before:absolute before:inset-x-0 before:top-6 before:h-px before:bg-rule-strong md:min-w-0 md:justify-between'>
         {children}
       </ol>
+    </div>
+  )
+  if (!hint) return region
+  return (
+    <div className='flex flex-col gap-3'>
+      {region}
+      <p aria-hidden className='flex items-center gap-2 font-mono text-label uppercase text-muted-foreground md:hidden'>
+        {hint}
+        <ArrowRight className='size-4 text-copper' />
+      </p>
     </div>
   )
 }
