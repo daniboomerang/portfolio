@@ -44,6 +44,8 @@ function TextLink({ variant, icon, disabled, className, children, href, ...props
   return (
     <a
       href={disabled ? undefined : href}
+      // Without href an <a> has no link role, and aria-disabled needs one.
+      role={disabled ? 'link' : undefined}
       aria-disabled={disabled || undefined}
       target={external ? '_blank' : undefined}
       rel={external ? 'noreferrer' : undefined}

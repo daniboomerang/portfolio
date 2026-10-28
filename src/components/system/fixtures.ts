@@ -78,8 +78,8 @@ export const motionTokens = [
     name: 'Drift',
     token: '--duration-drift',
     className: 'duration-(--duration-drift)',
-    value: '9s',
-    use: 'Hero diagram float (4px)'
+    value: '4.5s',
+    use: 'Hero diagram float (4px, once)'
   },
   {
     name: 'Editorial ease',

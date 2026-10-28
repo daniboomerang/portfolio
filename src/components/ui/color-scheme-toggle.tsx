@@ -20,7 +20,9 @@ export function ColorSchemeToggle() {
   }, [])
 
   function flip() {
-    const next: ColorScheme = scheme === 'dark' ? 'light' : 'dark'
+    // Read the document, not local state: another toggle on the page may have flipped it.
+    const current = document.documentElement.getAttribute(COLOR_SCHEME_ATTRIBUTE)
+    const next: ColorScheme = current === 'dark' ? 'light' : 'dark'
     document.documentElement.setAttribute(COLOR_SCHEME_ATTRIBUTE, next)
     // biome-ignore lint/suspicious/noDocumentCookie: Cookie Store API lacks Safari/Firefox support; document.cookie is the cross-browser write path
     document.cookie = `${COLOR_SCHEME_COOKIE}=${next}; Path=/; Max-Age=${COLOR_SCHEME_COOKIE_MAX_AGE}; SameSite=Lax`

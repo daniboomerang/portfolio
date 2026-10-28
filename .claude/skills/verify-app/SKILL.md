@@ -51,7 +51,7 @@ Use Fredrin's browser (`fredrin browser …`; with a ticket bound it is the Live
 1. `navigate http://localhost:3009/` — light paper by default. Header: DANI ESTEVEZ / SOFTWARE ENGINEER left, Story /
    Work / Contact + scheme toggle right (links visible at every width). Hero: "I build software. / And the systems /
    behind it." (three lines on desktop), the "18 years building software…" summary, Explore the story ↓, THAILAND ·
-   GMT+7, and the line-drawn planes diagram on the right (under the text below `lg`), drifting a few px.
+   GMT+7, and the line-drawn planes diagram on the right (under the text below `lg`), floating once by a few px.
 2. Click nav **Story** (or `navigate http://localhost:3009/#story`) — three paragraphs fade in; counters run to 15+ / 4+ / 3.
 3. **Career** (`#career`) — timeline thread fills as you scroll; each entry's dot springs in; education last.
 4. **Products** (`#products`) — four cards (Vāda, Herald, Vinaya, Atta Labs) that lift on hover and link out.
@@ -59,7 +59,7 @@ Use Fredrin's browser (`fredrin browser …`; with a ticket bound it is the Live
 6. **Color scheme**: click the toggle → `<html data-theme>` flips light → dark, `document.cookie` has
    `atta-color-scheme=dark`; `reload` → still dark (no light flash). Click again to restore light.
    Check with `eval "document.documentElement.dataset.theme + ' | ' + document.cookie"`.
-7. `navigate http://localhost:3009/system` — colour tokens, type scale, layout, motion (drift vs reduced-motion
+7. `navigate http://localhost:3009/system` — colour tokens, type scale, layout, motion (float vs reduced-motion
    diagrams), editorial components on paper AND panel, story elements (timeline, chapter nodes, panel with workflow
    steps + Revise arrow), interaction states, then the real header + hero full width. Click a workflow step → it
    becomes selected (copper border + marker) and the "Selected:" line updates.

@@ -9,7 +9,7 @@ export const duration = {
   fast: 0.15,
   base: 0.25,
   reveal: 0.5,
-  drift: 9
+  drift: 4.5
 } as const
 
 export const ease = {

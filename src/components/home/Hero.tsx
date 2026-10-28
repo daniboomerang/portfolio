@@ -5,7 +5,7 @@ import { HeroDiagram } from './HeroDiagram'
 /**
  * First screen: the approved headline (one desktop line per entry), the summary, the story
  * link and the location, with the architectural drawing beside it — under it on narrow
- * screens. The text renders visible from the server; only the drawing drifts.
+ * screens. The text renders visible from the server; only the drawing moves, once.
  */
 export function Hero() {
   return (

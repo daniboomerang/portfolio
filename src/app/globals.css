@@ -147,11 +147,14 @@
   --success: var(--moss);
   --success-foreground: var(--moss-foreground);
 
+  --destructive: #e5674f;
+  --destructive-foreground: #202823;
+  --warning: #e0a548;
+  --warning-foreground: #202823;
+  --header-background: #202823;
+  --shadow-color: rgb(0 0 0 / 0.4);
+  /* Charts and gradients are not used on the panel; they keep the page scheme's values. */
   color-scheme: dark;
-  /* `color` inherits as an already-resolved value, so the panel re-declares it alongside
-     the variables; otherwise text would keep the page scheme's ink on the panel. */
-  color: var(--foreground);
-  background-color: var(--background);
 }
 
 /* Static design tokens: type roles, type scale, layout, motion. Values in px are the brief's
@@ -200,7 +203,7 @@
   --duration-fast: 150ms;
   --duration-base: 250ms;
   --duration-reveal: 500ms;
-  --duration-drift: 9s;
+  --duration-drift: 4.5s;
 
   /* Soft, low shadows — the brief rules out heavy ones. */
   --shadow-2xs: 0 1px 0 0 var(--shadow-color);
@@ -282,6 +285,24 @@
     -webkit-font-smoothing: antialiased;
   }
   /* One visible focus treatment for every keyboard-focusable element. */
+  /* `color` inherits as an already-resolved value, so the panel re-declares it alongside its
+     variables; otherwise text would keep the page scheme's ink. In the base layer so a
+     utility on the Panel itself still wins. */
+  [data-surface="panel"] {
+    color: var(--foreground);
+    background-color: var(--background);
+  }
+  /* The CSS half of reduced motion (motion/react's half is MotionProvider): transitions finish
+     instantly, so hover nudges, chevrons and the /system duration demos do not move. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+    }
+  }
   :focus-visible {
     outline: 2px solid var(--ring);
     outline-offset: 3px;

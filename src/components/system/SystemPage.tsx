@@ -195,7 +195,7 @@ export function SystemPage() {
         <Section
           id='motion'
           title='Motion'
-          intro='Point at a row to run its duration. Reduced motion removes movement; content never waits on it.'
+          intro='Point at a row to run its duration. Reduced motion removes movement (CSS and motion/react); content never waits on it.'
         >
           <ul className='flex flex-col'>
             {motionTokens.map((token) => (
@@ -222,8 +222,8 @@ export function SystemPage() {
             ))}
           </ul>
           <div className='grid gap-6 md:grid-cols-2'>
-            <Specimen label='Motion allowed: the planes drift'>
-              <MotionConfig reducedMotion='never'>
+            <Specimen label='Your motion setting: the planes float once'>
+              <MotionConfig reducedMotion='user'>
                 <HeroDiagram className='max-w-sm border border-rule' />
               </MotionConfig>
             </Specimen>
@@ -387,10 +387,12 @@ export function SystemPage() {
             Header and hero
           </Heading>
           <Text size='small' className='text-muted-foreground'>
-            The real components, as rendered on the home page.
+            The real components, as rendered on the home page (inert here: the live header is at the top).
           </Text>
         </div>
-        <div className='border-y border-rule'>
+        {/* A specimen, not a second page: inert keeps its nav, toggle and h1 out of the tab order
+            and the accessibility tree. */}
+        <div inert className='border-y border-rule'>
           <SiteHeader />
           <Hero />
         </div>

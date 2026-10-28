@@ -12,12 +12,15 @@ function plane(cx: number, cy: number, w: number) {
 
 const line = { vectorEffect: 'non-scaling-stroke' as const }
 
-/** A gentle, slow float. MotionProvider turns it off for reduced-motion visitors. */
+/**
+ * One gentle float up and back, under five seconds so it never needs a pause control
+ * (WCAG 2.2.2). MotionProvider turns it off for reduced-motion visitors.
+ */
 function Drift({ delay, children }: { delay: number; children: ReactNode }) {
   return (
     <motion.g
       animate={{ y: [0, -distance.drift, 0] }}
-      transition={{ duration: duration.drift, delay, repeat: Number.POSITIVE_INFINITY, ease: 'easeInOut' }}
+      transition={{ duration: duration.drift, delay, ease: 'easeInOut' }}
     >
       {children}
     </motion.g>

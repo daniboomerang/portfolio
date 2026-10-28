@@ -23,7 +23,7 @@ function Timeline({ label, className, children, ...props }: TimelineProps) {
       )}
       {...props}
     >
-      <ol className='relative flex min-w-max gap-10 pt-6 before:absolute before:inset-x-0 before:top-6 before:h-px before:bg-rule-strong md:min-w-0 md:justify-between'>
+      <ol className='relative flex min-w-max gap-10 pt-6 pr-16 md:pr-0 before:absolute before:inset-x-0 before:top-6 before:h-px before:bg-rule-strong md:min-w-0 md:justify-between'>
         {children}
       </ol>
     </div>
