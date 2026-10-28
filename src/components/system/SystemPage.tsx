@@ -394,7 +394,7 @@ export function SystemPage() {
         </div>
         {/* A specimen, not a second page: inert keeps its nav, toggle and h1 out of the tab order
             and the accessibility tree. */}
-        <div inert className='border-y border-rule'>
+        <div inert className='border-y border-rule pb-16'>
           <SiteHeader />
           <Hero />
         </div>
