@@ -1,6 +1,6 @@
 /**
  * Every fact on the page, in one place. The copy is the owner's approved design brief
- * (DESIGN_BRIEF.md), cross-checked against Daniel's own published profile (github.com/daniboomerang
+ * (DESIGN_BRIEF.md, attached to the redesign tickets), cross-checked against Daniel's own published profile (github.com/daniboomerang
  * README) and CV — nothing here is invented copy, and private CV details (phone, date of birth)
  * are deliberately left out.
  */
@@ -69,6 +69,26 @@ export const hero = {
   headline: ['I build software.', 'And the systems', 'behind it.'],
   summary: '18 years building software. Interfaces, infrastructure, and the judgment connecting them.',
   cta: { label: 'Explore the story', href: '#story' }
+}
+
+/** Small strings the chapters share: preview labels, the timeline hint, the stack prefix. */
+export const ui = {
+  schematicLabel: 'Illustrative schematic',
+  workSchematicLabel: 'Schematic',
+  timelineHint: 'Scroll for more',
+  stackPrefix: 'Stack: '
+}
+
+/** What each stand-in preview shows, for its accessible name. Schematics stand in for screenshots not yet supplied. */
+export const schematics = {
+  launcher:
+    'Schematic of a desktop games launcher: library navigation, a featured game with Play and Download, a row of game covers, a Connect wallet control, and macOS, Windows and Linux builds.',
+  quests:
+    'Schematic of a quests portal: three quests with progress bars, a Claim reward button and a connected wallet, shown as three layered brand variants of the same components.',
+  home: 'Schematic of a home page: a navigation bar, a large headline and a few content blocks.',
+  claims: 'Schematic of claims on the left joined by fine lines to evidence on the right.',
+  runs: 'Schematic of a list of runs, each with a status marker.',
+  orbit: 'Schematic of several agents orbiting one shared question.'
 }
 
 /** 01 — Built with people. */
@@ -237,6 +257,7 @@ export const demo = {
     { label: 'Inspect the build history', href: 'https://zerion.attalabs.dev/dev-stats' }
   ] satisfies ExternalLink[],
   stack: ['TanStack Start', 'React', 'TypeScript', 'viem'],
+  /** The demo's own social card, copied from the Onchain Rewind repository (public/og-default.png). */
   image: {
     alt: 'The Onchain Rewind social card: the title “Onchain Rewind”, the line “Your wallet’s year, played back”, and a ring of coloured particles on a dark background.',
     label: 'Social card from the demo'

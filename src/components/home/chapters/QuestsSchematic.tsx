@@ -1,4 +1,5 @@
 import { Check, Circle, Wallet } from 'lucide-react'
+import { schematics } from '@/content/portfolio'
 import { cn } from '@/lib/utils'
 
 const quests = [
@@ -8,8 +9,7 @@ const quests = [
 ]
 
 // One component contract, three brands: only the accent and the mark change between variants.
-// Each layer is positioned with its own z-index: a transformed sibling would otherwise paint
-// over an untransformed one regardless of source order.
+// Explicit z-index keeps the front variant on top whatever order the layers render in.
 const brands = [
   {
     name: 'Brand C',
@@ -74,11 +74,7 @@ function Variant({ brand, front }: { brand: (typeof brands)[number]; front: bool
  */
 export function QuestsSchematic() {
   return (
-    <div
-      role='img'
-      aria-label='Schematic of a quests portal: three quests with progress bars, a Claim reward button and a connected wallet, shown as three layered brand variants of the same components.'
-      className='grid pt-14 pr-10 pb-2'
-    >
+    <div role='img' aria-label={schematics.quests} className='grid pt-14 pr-10 pb-2'>
       {brands.map((brand, i) => (
         <Variant key={brand.name} brand={brand} front={i === brands.length - 1} />
       ))}

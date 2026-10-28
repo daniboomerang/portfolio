@@ -1,5 +1,5 @@
 import { ExhibitFrame, Heading, MonoLabel, Text, Timeline, TimelineStop } from '@/components/ui'
-import { builtWithPeople, type WorkFeature } from '@/content/portfolio'
+import { builtWithPeople, ui, type WorkFeature } from '@/content/portfolio'
 import { cn } from '@/lib/utils'
 import { Reveal } from '../Reveal'
 import { Chapter } from './Chapter'
@@ -18,7 +18,11 @@ function Feature({ feature, flip }: { feature: WorkFeature; flip?: boolean }) {
   return (
     <article
       aria-labelledby={titleId}
-      className='grid items-center gap-12 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-20'
+      className={cn(
+        'grid items-center gap-12 lg:gap-20',
+        // The preview always gets the wider track, on whichever side it sits.
+        flip ? 'lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]' : 'lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]'
+      )}
     >
       <Reveal className={cn('flex flex-col gap-6', flip && 'lg:order-2')}>
         <p className='flex flex-col gap-2'>
@@ -35,12 +39,12 @@ function Feature({ feature, flip }: { feature: WorkFeature; flip?: boolean }) {
           {feature.body}
         </Text>
         <MonoLabel as='p'>
-          <span className='sr-only'>Stack: </span>
+          <span className='sr-only'>{ui.stackPrefix}</span>
           {feature.stack.join(' · ')}
         </MonoLabel>
       </Reveal>
       <Reveal delay={0.1} className={cn(flip && 'lg:order-1')}>
-        <ExhibitFrame label='Illustrative schematic' caption={feature.previewCaption}>
+        <ExhibitFrame label={ui.schematicLabel} caption={feature.previewCaption}>
           <Preview />
         </ExhibitFrame>
       </Reveal>
@@ -57,7 +61,7 @@ export function BuiltWithPeople() {
         <MonoLabel as='p'>
           {foundations.label} / {foundations.period}
         </MonoLabel>
-        <Timeline label={`${foundations.label}, ${foundations.period}`} hint='Scroll for more'>
+        <Timeline label={`${foundations.label}, ${foundations.period}`} hint={ui.timelineHint}>
           {foundations.stops.map((stop) => (
             <TimelineStop key={stop.year} {...stop} />
           ))}

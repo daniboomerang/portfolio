@@ -77,8 +77,9 @@ export function VinayaWorkflow() {
         </Stage>
       </ol>
       {/* The return path: from the centre of the review stage back to the centre of Developer.
-          The wrapper spans those two columns; each margin is half a column (25% less a quarter gap). */}
-      <div className='hidden lg:grid lg:grid-cols-5 lg:gap-x-8'>
+          The wrapper spans those two columns; each margin is half a column (25% less a quarter gap).
+          -mt-6 cancels the figure's gap so the right leg starts at the review group's bottom edge. */}
+      <div className='hidden lg:-mt-6 lg:grid lg:grid-cols-5 lg:gap-x-8'>
         <div className='col-start-2 col-end-4'>
           <RevisionArrow label={vinaya.revision} className='mx-[calc(25%-0.5rem)]' />
         </div>

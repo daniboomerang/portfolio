@@ -1,5 +1,6 @@
 import { Compass, Download, Gamepad2, Library, Play, Search, Wallet } from 'lucide-react'
 import { Panel } from '@/components/ui'
+import { schematics } from '@/content/portfolio'
 
 const sidebar = [
   { icon: Library, label: 'Library' },
@@ -17,11 +18,7 @@ const covers = ['bg-muted', 'bg-accent', 'bg-secondary', 'bg-muted']
  */
 export function LauncherSchematic() {
   return (
-    <Panel
-      role='img'
-      aria-label='Schematic of a desktop games launcher: library navigation, a featured game with Play and Download, a row of game covers, a Connect wallet control, and macOS, Windows and Linux builds.'
-      className='mt-8 flex flex-col border border-rule text-small'
-    >
+    <Panel role='img' aria-label={schematics.launcher} className='mt-8 flex flex-col border border-rule text-small'>
       <div className='flex items-center gap-3 border-b border-rule px-4 py-3'>
         <span className='flex gap-1.5'>
           <span className='size-2 rounded-full bg-rule-strong' />

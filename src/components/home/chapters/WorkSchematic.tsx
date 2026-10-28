@@ -1,18 +1,11 @@
-import type { Work } from '@/content/portfolio'
+import { schematics, type Work } from '@/content/portfolio'
 
 const line = { vectorEffect: 'non-scaling-stroke' as const }
-
-const descriptions: Record<Work['preview'], string> = {
-  home: 'Schematic of a home page: a navigation bar, a large headline and a few content blocks.',
-  claims: 'Schematic of claims on the left joined by fine lines to evidence on the right.',
-  runs: 'Schematic of a list of runs, each with a status marker.',
-  orbit: 'Schematic of several agents orbiting one shared question.'
-}
 
 /** Small labelled line drawings that stand in for the missing product screenshots in chapter 05. */
 export function WorkSchematic({ variant }: { variant: Work['preview'] }) {
   return (
-    <svg viewBox='0 0 240 140' role='img' aria-label={descriptions[variant]} className='h-auto w-full'>
+    <svg viewBox='0 0 240 140' role='img' aria-label={schematics[variant]} className='h-auto w-full'>
       {variant === 'home' && (
         <>
           <rect x={10} y={10} width={220} height={120} className='fill-background stroke-foreground/50' {...line} />

@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import onchainCard from '@/assets/onchain-rewind-card.png'
 import { ExhibitFrame, ExpandableDetail, Heading, MonoLabel, Text, TextLink } from '@/components/ui'
-import { demo, work } from '@/content/portfolio'
+import { demo, ui, work } from '@/content/portfolio'
 import { Reveal } from '../Reveal'
 import { Chapter } from './Chapter'
 import { WorkSchematic } from './WorkSchematic'
@@ -38,7 +38,7 @@ function DemoExhibit() {
           ))}
         </div>
         <MonoLabel as='p'>
-          <span className='sr-only'>Stack: </span>
+          <span className='sr-only'>{ui.stackPrefix}</span>
           {demo.stack.join(' · ')}
         </MonoLabel>
       </Reveal>
@@ -78,7 +78,7 @@ export function Work() {
                   </TextLink>
                 )}
               </div>
-              <ExhibitFrame label='Schematic'>
+              <ExhibitFrame label={ui.workSchematicLabel}>
                 <div className='pt-6'>
                   <WorkSchematic variant={item.preview} />
                 </div>

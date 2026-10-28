@@ -304,6 +304,11 @@
       animation-duration: 0.01ms !important;
       animation-iteration-count: 1 !important;
     }
+    /* motion/react keeps the opacity fade under reducedMotion='user'; show reveals at once. */
+    [data-reveal] {
+      opacity: 1 !important;
+      transform: none !important;
+    }
   }
   :focus-visible {
     outline: 2px solid var(--ring);

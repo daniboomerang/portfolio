@@ -13,11 +13,13 @@ type RevealProps = {
 
 /**
  * Fades and lifts its children in the first time they scroll into view. Reduced motion is
- * handled once, by the root `MotionProvider`, not per instance.
+ * handled once, by the root `MotionProvider` and the `[data-reveal]` rule in globals.css (which
+ * also covers visitors without JavaScript, via the layout's <noscript>), not per instance.
  */
 export function Reveal({ children, className, delay = 0 }: RevealProps) {
   return (
     <motion.div
+      data-reveal
       className={className}
       initial={{ opacity: 0, y: distance.reveal }}
       whileInView={{ opacity: 1, y: 0 }}
