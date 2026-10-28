@@ -11,7 +11,9 @@ export function SiteHeader({ className }: { className?: string }) {
         className='mx-auto flex h-header max-w-content items-center justify-between gap-4 px-gutter'
       >
         <a href='/' className='flex min-h-11 items-center gap-4'>
-          <span className='whitespace-nowrap font-display text-base uppercase tracking-wordmark text-foreground sm:text-lg'>{profile.name}</span>
+          <span className='whitespace-nowrap font-display text-base uppercase tracking-wordmark text-foreground sm:text-lg'>
+            {profile.name}
+          </span>
           <MonoLabel className='hidden md:inline'>{profile.role}</MonoLabel>
         </a>
         <div className='flex items-center gap-2 sm:gap-6'>

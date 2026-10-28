@@ -19,7 +19,7 @@ function WorkflowStep({ icon: Icon, title, detail, selected = false, className, 
       type='button'
       aria-pressed={selected}
       className={cn(
-        'group relative flex min-h-11 w-full items-start gap-3 border bg-card p-4 text-left text-card-foreground transition-[border-color,background-color] duration-(--duration-base) ease-editorial',
+        'group relative flex min-h-11 w-full items-start gap-3 border bg-card p-4 pr-8 text-left text-card-foreground transition-[border-color,background-color] duration-(--duration-base) ease-editorial',
         'hover:border-rule-strong hover:bg-muted active:bg-accent',
         'disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:border-rule disabled:hover:bg-card',
         selected ? 'border-2 border-copper' : 'border-rule',

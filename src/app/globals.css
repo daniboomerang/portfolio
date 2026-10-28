@@ -89,6 +89,13 @@
   --accent: #262c27;
   --accent-foreground: #ece6d8;
   --input: rgb(236 230 216 / 0.28);
+  /* Aliases resolve where they are declared, so every scope that changes the brand roles
+     re-declares them. */
+  --border: var(--rule);
+  --ring: var(--copper);
+  --success: var(--moss);
+  --success-foreground: var(--moss-foreground);
+
   --destructive: #e5674f;
   --destructive-foreground: #171b18;
   --warning: #e0a548;
@@ -133,6 +140,13 @@
   --accent: #2b352f;
   --accent-foreground: #efe9dc;
   --input: rgb(239 233 220 / 0.28);
+  /* Aliases resolve where they are declared, so every scope that changes the brand roles
+     re-declares them. */
+  --border: var(--rule);
+  --ring: var(--copper);
+  --success: var(--moss);
+  --success-foreground: var(--moss-foreground);
+
   color-scheme: dark;
   /* `color` inherits as an already-resolved value, so the panel re-declares it alongside
      the variables; otherwise text would keep the page scheme's ink on the panel. */
